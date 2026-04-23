@@ -80,6 +80,53 @@ cmake -B build -S .
 cmake --build build -j$(nproc)
 ```
 
+### Build con qt5.15.2 specifica 
+cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.15.2/gcc_64
+cmake --build build-qt5.15.2 -j$(nproc)
+
+### Build con log deprecated
+cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.15.2/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
+
+- Log completo
+cmake --build build-qt5.15.2 -j$(nproc) 2>&1 | tee buil d-qt5.15.2/deprecated_qt515.log
+
+- Log solo warning
+cmake --build build-qt5.15.2 -j"$(nproc)" 2>&1 | tee build-qt5.15.2/full_build.log | rg "deprecated|deprecated-declarations" > build-qt5.15.2/deprecated_qt515.log
+
+
+
+
+### Build con qt6.11
+cmake -B build-qt6 -S . -DQT_VERSION=6 -DCMAKE_PREFIX_PATH=/opt/Qt/6.11.0/gcc_64
+cmake --build build-qt6 -j$(nproc)
+
+### Build con log deprecated
+cmake -B build-qt6 -S . -DQT_VERSION=6 -DCMAKE_PREFIX_PATH=/opt/Qt/6.11.0/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
+
+- Log completo 
+cmake --build build-qt6 -j$(nproc) 2>&1 | tee deprecated_qt6.log
+
+- Log solo warning
+cmake --build build-qt6 -j"$(nproc)" 2>&1 | tee build-qt6/full_build.log | rg "deprecated|deprecated-declarations" > build-qt6/deprecated_qt6.log
+
+
+
+
+### Build con qt5.10.1 specifica 
+cmake -B build-qt5.10.1 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/opt/Qt5.10.1/5.10.1/gcc_64
+cmake --build build-qt5.10.1 -j$(nproc)
+
+### Build con log deprecated
+cmake -B build-qt5.10.1 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/opt/Qt5.10.1/5.10.1/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
+
+- Log completo 
+cmake --build build-qt5.10.1 -j$(nproc) 2>&1 | tee deprecated_qt510.log
+
+- Log solo warning
+cmake --build build-qt5.10.1 -j"$(nproc)" 2>&1 | tee build-qt5.10.1/full_build.log | rg "deprecated|deprecated-declarations" > build-qt5.10.1/deprecated_qt510.log
+
+
+
 The binary is written to `build/iannix`.
 
 **Install system-wide (optional)**
