@@ -36,6 +36,13 @@
 #include <opencv2/legacy/compat.hpp>
 #endif
 
+
+/*#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    const auto skip_empty_parts = Qt::SkipEmptyParts;
+#else
+    const auto skip_empty_parts = QString::SkipEmptyParts;
+#endif*/
+
 class OpenGlFont : public QFont {
 private:
     qreal _leading, _pLeading;
@@ -58,7 +65,7 @@ public:
 public:
     static inline const OpenGlFont getFont(const QString &family, int options = Qt::AlignCenter, quint16 size = 16, qreal leading = 100, qreal spacing = 100, qreal pLeading = 0, QFont::Stretch strech = QFont::Unstretched, QFont::Weight graisse = QFont::Normal, bool italic = false) {
         OpenGlFont font;
-        QStringList familySplit = family.split("|", QString::SkipEmptyParts);
+        QStringList familySplit = family.split("|", Qt::SkipEmptyParts);
         if(familySplit.count() > 1) {
             font.setFamily   (familySplit.at(0));
             font.setStyleName(familySplit.at(1));

@@ -27,6 +27,14 @@
 #include <QScreen>
 #include <QMessageBox>
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    const auto skip_empty_parts = Qt::SkipEmptyParts;
+    const auto keep_empty_parts = Qt::KeepEmptyParts;
+#else
+    const auto skip_empty_parts = QString::SkipEmptyParts;
+    const auto keep_empty_parts = Qt::KeepEmptyParts;
+#endif
+
 namespace Ui {
 class UiMessageBox;
 }
