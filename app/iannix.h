@@ -40,6 +40,7 @@
 #include <QFileOpenEvent>
 #include <QDesktopServices>
 #include <QWindow>
+#include <QRandomGenerator>
 #include <time.h>
 #include "misc/application.h"
 #include "gui/uimessagebox.h"

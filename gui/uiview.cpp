@@ -35,7 +35,7 @@ UiView::UiView(QWidget *parent) :
     Help::syncHelpWith(ui->actionImport_SVG,  COMMAND_CURVE_PATH);
 
 #ifndef Q_OS_MAC
-    ui->actionDelete->setShortcut(QApplication::trUtf8("UiView", "Delete"));
+    ui->actionDelete->setShortcut(QApplication::translate("UiView", "Delete"));
 #endif
 
     //About
@@ -422,7 +422,7 @@ void UiView::gridChange() {
 
 void UiView::actionResize() {
     QSize currentSize = ui->render->size();
-    QStringList newSizes = (new UiMessageBox())->getText(tr("Viewport Resize"), tr("New viewport size:"), tr("%1 x %2").arg(currentSize.width()).arg(currentSize.height())).split("x", QString::SkipEmptyParts);
+    QStringList newSizes = (new UiMessageBox())->getText(tr("Viewport Resize"), tr("New viewport size:"), tr("%1 x %2").arg(currentSize.width()).arg(currentSize.height())).split("x", skip_empty_parts);
     if(newSizes.count() == 2) {
         QSize newSize(newSizes.at(0).toUInt(), newSizes.at(1).toUInt());
         if((newSize.width() > 0) && (newSize.height() > 0))

@@ -13,12 +13,22 @@
                 "/usr/include/x86_64-linux-gnu/qt5/QtOpenGL",
                 "/usr/include/x86_64-linux-gnu/qt5/QtSerialPort",
                 "/usr/include/x86_64-linux-gnu/qt5/QtWebSockets",
-                "/usr/include/x86_64-linux-gnu/qt5/QtQml"
+                "/usr/include/x86_64-linux-gnu/qt5/QtQml",
+                "/home/dave/Qt/5.15.2/gcc_64/include",
+                "/home/dave/Qt/5.15.2/gcc_64/include/QtCore",
+                "/home/dave/Qt/5.15.2/gcc_64/include/QtWidgets",
+                "/opt/Qt/6.11.0/gcc_64/include",
+                "/opt/Qt/6.11.0/gcc_64/include/QtCore",
+                "/opt/Qt/6.11.0/gcc_64/include/QtWidgets",
+                "/opt/Qt5.10.1/5.10.1/gcc_64/include",
+                "/opt/Qt5.10.1/5.10.1/gcc_64/include/QtCore",
+                "/opt/Qt5.10.1/5.10.1/gcc_64/include/QtWidgets"
             ],
             "defines": [
                 "QT5"
             ],
-            "compilerPath": "/usr/bin/gcc",
+            /*"compilerPath": "/usr/bin/gcc",*/
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "linux-gcc-x64"
