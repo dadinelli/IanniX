@@ -206,7 +206,7 @@ void InterfaceOsc::bonjourScan() {
     }
 #endif
 
-    qSort(bonjourServices.begin(), bonjourServices.end(), BonjourService::sort);
+    std::sort(bonjourServices.begin(), bonjourServices.end(), BonjourService::sort);
     QTimer::singleShot(5000, this, SLOT(bonjourScan()));
 }
 void InterfaceOsc::openBonjour() {

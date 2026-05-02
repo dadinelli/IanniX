@@ -164,11 +164,13 @@ IanniX::IanniX(const QString &_projectToLoad, QObject *parent) :
     //Global settings creation if needed
     globalSettings = new QSettings();
     if((globalSettings) && (!globalSettings->childKeys().contains("id"))) {
-        qsrand(QDateTime::currentDateTime().toTime_t());
-        updateAnonymousId = QString::number(qrand());
+        /*qsrand(QDateTime::currentDateTime().toTime_t());*/
+        QRandomGenerator::global()->seed(QDateTime::currentDateTime().toTime_t());
+        updateAnonymousId = QString::number(QRandomGenerator::global()->generate());
         globalSettings->setValue("id", updateAnonymousId);
         globalSettings->setValue("updatePeriod", 1);
-        globalSettings->setValue("lastUpdate",   QDateTime(QDate(2000, 01, 01)));
+        /*globalSettings->setValue("lastUpdate",   QDateTime(QDate(2000, 01, 01));*/
+        globalSettings->setValue("lastUpdate",   (QDate(2000, 01, 01)));
     }
     //Local settings creation if needed
     QString settingsFilename = Application::pathDocuments.absoluteFilePath() + "/Settings.ini";
