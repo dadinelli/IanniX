@@ -203,7 +203,7 @@ cmake -B build -S . -DUSE_KINECT=ON
 - Optional features: `USE_FFMPEG=ON` requires FFmpeg dev libraries. `USE_KINECT`
   is gated to Unix builds; `USE_WACOM` is macOS-only.
 
-**Option 1: vcpkg (recommended, not required)**
+### **Option 1: vcpkg (recommended, not required)**
 
 [vcpkg](https://vcpkg.io) is the quickest way to get `muParser`, `RtMidi`, and
 optionally FFmpeg on Windows.
@@ -237,7 +237,7 @@ cmake -B build -S . ^
 cmake --build build --config Release
 ```
 
-**Option 2: fetch and build dependencies manually**
+### **Option 2: fetch and build dependencies manually**
 
 If you prefer not to use `vcpkg`, you can also clone and build the required
 libraries yourself, then point CMake at their install prefixes.
