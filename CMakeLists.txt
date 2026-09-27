@@ -119,9 +119,9 @@ else()
     set(IANNIX_RTMIDI_TARGET RtMidi::rtmidi)
 endif()
 
-find_package(KF5SyntaxHighlighting REQUIRED
-    HINTS /usr/lib64/cmake/KF5SyntaxHighlighting
-)
+#find_package(KF5SyntaxHighlighting REQUIRED
+#    HINTS /usr/lib64/cmake/KF5SyntaxHighlighting
+#)
 
 # ---------------------------------------------------------------------------
 # Optional features (disabled by default)
@@ -481,7 +481,8 @@ endif()
 # ---------------------------------------------------------------------------
 # Link Qt
 # ---------------------------------------------------------------------------
-target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi KF5::SyntaxHighlighting ${OPTIONAL_LIBS})
+# target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi KF5::SyntaxHighlighting ${OPTIONAL_LIBS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi ${OPTIONAL_LIBS})
 
 # ---------------------------------------------------------------------------
 # Platform-specific libraries

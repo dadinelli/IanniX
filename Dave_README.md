@@ -6,20 +6,7 @@
 IanniX uses CMake (≥ 3.17) and Qt 5. Qt 6 support is in progress but not yet complete.
 Release builds are 64-bit only; 32-bit releases have been discontinued.
 
----
-
-## Table of Contents
-
-1. [Linux](#linux)
-   - [openSUSE Tumbleweed](#opensuse-tumbleweed)
-   - [Ubuntu 22.04 / 24.04](#ubuntu-2204--2404)
-2. [macOS](#macos)
-3. [Windows](#windows)
-4. [CMake Options](#cmake-options)
-
----
-
-## Linux
+# Linux
 
 
 ### openSUSE Tumbleweed
@@ -101,6 +88,8 @@ sudo cmake --install build
 ## Win
 
 ### Installa dipendenze
+
+#### con vcpkg
 1 - installa gestore pacchetti vcpkg https://learn.microsoft.com/it-it/vcpkg/get_started/get-started?pivots=shell-cmd
 2 - Install the required and optional packages:
 
@@ -124,9 +113,7 @@ cmake -B build -S . ^
 cmake --build build --config Release
 ```
 
-#### oppure installa manualmente
-
-
+#### oppure manualmente
 **installazione muparser**
 ```bat
 :: Clona la repo 
@@ -156,7 +143,7 @@ cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.
 cmake --build build-qt5.15.2 -j$(nproc)
 
 ```bat
-cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 "-DCMAKE_PREFIX_PATH=C:\third_party\install;C:\Qt\Qt5.15.2\5.15.2\msvc2019_64"
+cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 "-DCMAKE_PREFIX_PATH=C:\third_party\install;C:\Qt\Qt5.15.2\5.15.2\mingw81_64"
 cmake --build build-qt5.15.2 --config Release
 ```
 
