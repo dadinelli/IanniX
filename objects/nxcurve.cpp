@@ -21,7 +21,7 @@
 
 #include "nxcurve.h"
 #ifdef Q_OS_WIN
-    #define MUSTR(a) QString(a).toStdWString()
+    #define MUSTR(a) QString(a).toStdstring()
 #else
     #define MUSTR(a) QString(a).toStdString()
 #endif
@@ -132,7 +132,7 @@ void NxCurve::calcEquation() {
         }
         catch (Parser::exception_type &e) {
 #ifdef Q_OS_WIN
-            qDebug("[MathParser] Curve #%d Calculation error (%d), %s\n%s", id, e.GetPos(), qPrintable(QString::fromStdWString(e.GetMsg())), qPrintable(QString::fromStdWString(e.GetExpr())));
+            qDebug("[MathParser] Curve #%d Calculation error (%d), %s\n%s", id, e.GetPos(), qPrintable(QString::fromStdString(e.GetMsg())), qPrintable(QString::fromStdString(e.GetExpr())));
 #else
             qDebug("[MathParser] Curve #%d Calculation error (%d), %s\n%s", id, e.GetPos(), qPrintable(QString::fromStdString(e.GetMsg())), qPrintable(QString::fromStdString(e.GetExpr())));
 #endif

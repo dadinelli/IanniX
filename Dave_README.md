@@ -85,7 +85,7 @@ sudo cmake --install build
 
 ---
 
-## Win
+# Win
 
 ### Installa dipendenze
 
@@ -107,10 +107,13 @@ sudo cmake --install build
 Pass the vcpkg toolchain file to CMake:
 
 ```bat
-cmake -B build -S . ^
-    -DCMAKE_TOOLCHAIN_FILE=%USERPROFILE%\vcpkg\scripts\buildsystems\vcpkg.cmake ^
-    -DVCPKG_TARGET_TRIPLET=x64-windows
-cmake --build build --config Release
+::original
+cmake -B build-dependencies -S . -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
+
+::edited
+cmake -B build-dependencies -S . -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
+
+cmake --build build-dependencies --config Release
 ```
 
 #### oppure manualmente
@@ -138,28 +141,17 @@ cmake --install C:\third_party\build-rtmidi --config Release
 
 
 ### BUILD
-#### Build con qt5.15.2 specifica 
+#### Build qt5.15.2 specifica - UBUNTU
 cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.15.2/gcc_64
 cmake --build build-qt5.15.2 -j$(nproc)
 
+#### Build qt5.15.2 specifica - WIN
 ```bat
-cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 "-DCMAKE_PREFIX_PATH=C:\third_party\install;C:\Qt\Qt5.15.2\5.15.2\mingw81_64"
-cmake --build build-qt5.15.2 --config Release
-```
+::Original
+cmake -B build-qt5.15.2 -S . -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\mingw810_64\bin"
+cmake --build build -j$env:NUMBER_OF_PROCESSORS
 
-##### Build con log deprecated
-cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.15.2/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
-
-- Log completo
-cmake --build build-qt5.15.2 -j$(nproc) 2>&1 | tee buil d-qt5.15.2/deprecated_qt515.log
-
-- Log solo warning
-cmake --build build-qt5.15.2 -j"$(nproc)" 2>&1 | tee build-qt5.15.2/full_build.log | rg "deprecated|deprecated-declarations" > build-qt5.15.2/deprecated_qt515.log
-
-
-
-
-#### Build con qt6.11
+::edited
 cmake -B build-qt6 -S . -DQT_VERSION=6 -DCMAKE_PREFIX_PATH=/opt/Qt/6.11.0/gcc_64
 cmake --build build-qt6 -j$(nproc)
 
@@ -175,7 +167,7 @@ cmake --build build-qt6 -j"$(nproc)" 2>&1 | tee build-qt6/full_build.log | rg "d
 
 
 
-#### Build con qt5.10.1 specifica (NON FUNZIONANTE SU WIN11) 
+#### Build qt5.10.1 specifica (NON FUNZIONANTE SU WIN11) 
 cmake -B build-qt5.10.1 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/opt/Qt5.10.1/5.10.1/gcc_64
 
 oppure

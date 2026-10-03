@@ -104,7 +104,7 @@ endif()
 # System library dependencies (vendored copies removed)
 # ---------------------------------------------------------------------------
 find_package(muparser REQUIRED)
-#find_package(RtMidi   REQUIRED)
+find_package(RtMidi   REQUIRED)
 
 find_package(RtMidi QUIET CONFIG)
 if(RtMidi_FOUND)
@@ -119,9 +119,9 @@ else()
     set(IANNIX_RTMIDI_TARGET RtMidi::rtmidi)
 endif()
 
-#find_package(KF5SyntaxHighlighting REQUIRED
+find_package(KF5SyntaxHighlighting REQUIRED
 #    HINTS /usr/lib64/cmake/KF5SyntaxHighlighting
-#)
+)
 
 # ---------------------------------------------------------------------------
 # Optional features (disabled by default)
