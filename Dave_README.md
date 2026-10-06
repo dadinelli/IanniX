@@ -102,18 +102,23 @@ sudo cmake --install build
 
 :: Optional: FFmpeg (enables USE_FFMPEG=ON)
 %USERPROFILE%\vcpkg\vcpkg install ffmpeg --triplet x64-windows
+
+::Mandatory  kf5syntaxhighlighting
+vcpkg install kf5syntaxhighlighting --triplet x64-windows
+
+::Mandatory qt5 serial port
+vcpkg install qt5-serialport --triplet x64-windows
 ```
 
 Pass the vcpkg toolchain file to CMake:
 
 ```bat
-::original
-cmake -B build-dependencies -S . -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
 
-::edited
-cmake -B build-dependencies -S . -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
+cmake --build build --config Release
 
-cmake --build build-dependencies --config Release
+::build con log
+cmake --build build --config Release --verbose 2>&1 | Tee-Object -FilePath build.log
 ```
 
 #### oppure manualmente
@@ -141,21 +146,22 @@ cmake --install C:\third_party\build-rtmidi --config Release
 
 
 ### BUILD
-#### Build qt5.15.2 specifica - UBUNTU
+#### Build qt5.15.2 - UBUNTU
 cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.15.2/gcc_64
 cmake --build build-qt5.15.2 -j$(nproc)
 
-#### Build qt5.15.2 specifica - WIN
+#### Build qt5.15.2 - WIN
 ```bat
-::Original
-cmake -B build-qt5.15.2 -S . -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\mingw810_64\bin"
+::Compilazione MinGW
+cmake -B build-qt5.15.2 -S . -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\mingw810_64"
+
+::Compilazione MSVC
+cmake -B build-qt5.5.2 -S . "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\msvc2019_64"
+
 cmake --build build -j$env:NUMBER_OF_PROCESSORS
+```
 
-::edited
-cmake -B build-qt6 -S . -DQT_VERSION=6 -DCMAKE_PREFIX_PATH=/opt/Qt/6.11.0/gcc_64
-cmake --build build-qt6 -j$(nproc)
-
-##### Build con log deprecated
+##### Build con log deprecated - UBUNTU
 cmake -B build-qt6 -S . -DQT_VERSION=6 -DCMAKE_PREFIX_PATH=/opt/Qt/6.11.0/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
 
 - Log completo 
@@ -163,24 +169,3 @@ cmake --build build-qt6 -j$(nproc) 2>&1 | tee deprecated_qt6.log
 
 - Log solo warning
 cmake --build build-qt6 -j"$(nproc)" 2>&1 | tee build-qt6/full_build.log | rg "deprecated|deprecated-declarations" > build-qt6/deprecated_qt6.log
-
-
-
-
-#### Build qt5.10.1 specifica (NON FUNZIONANTE SU WIN11) 
-cmake -B build-qt5.10.1 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/opt/Qt5.10.1/5.10.1/gcc_64
-
-oppure
-
-cmake -B build-qt5.10.1 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=C:/Qt/Qt5.10.1/Tools/mingw530_32/bin/gcc
-
-cmake --build build-qt5.10.1 --parallel 8
-
-##### Build con log deprecated
-cmake -B build-qt5.10.1 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/opt/Qt5.10.1/5.10.1/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
-
-- Log completo 
-cmake --build build-qt5.10.1 -j$(nproc) 2>&1 | tee deprecated_qt510.log
-
-- Log solo warning
-cmake --build build-qt5.10.1 -j"$(nproc)" 2>&1 | tee build-qt5.10.1/full_build.log | rg "deprecated|deprecated-declarations" > build-qt5.10.1/deprecated_qt510.log

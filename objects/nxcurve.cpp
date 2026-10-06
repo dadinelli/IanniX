@@ -21,7 +21,7 @@
 
 #include "nxcurve.h"
 #ifdef Q_OS_WIN
-    #define MUSTR(a) QString(a).toStdstring()
+    #define MUSTR(a) QString(a).toStdString()
 #else
     #define MUSTR(a) QString(a).toStdString()
 #endif
