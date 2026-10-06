@@ -104,7 +104,7 @@ endif()
 # System library dependencies (vendored copies removed)
 # ---------------------------------------------------------------------------
 find_package(muparser REQUIRED)
-find_package(RtMidi   REQUIRED)
+#find_package(RtMidi   REQUIRED)
 
 find_package(RtMidi QUIET CONFIG)
 if(RtMidi_FOUND)
@@ -481,8 +481,8 @@ endif()
 # ---------------------------------------------------------------------------
 # Link Qt
 # ---------------------------------------------------------------------------
-# target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi KF5::SyntaxHighlighting ${OPTIONAL_LIBS})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi ${OPTIONAL_LIBS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi KF5::SyntaxHighlighting ${OPTIONAL_LIBS})
+#target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBS} muparser::muparser RtMidi::rtmidi ${OPTIONAL_LIBS})
 
 # ---------------------------------------------------------------------------
 # Platform-specific libraries

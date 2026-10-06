@@ -67,13 +67,14 @@ sudo apt install \
 **Configure and build**
 
 ```bash
-cmake -B build -S .
+::Original
+cmake -B build -S . 
+
+::Edited
+cmake -B build -S . -DCMAKE_CXX_FLAGS="-I/usr/include/KF5/KSyntaxHighlighting"
+
 cmake --build build -j$(nproc)
 ```
-
-
-
-
 
 The binary is written to `build/iannix`.
 
@@ -82,6 +83,17 @@ The binary is written to `build/iannix`.
 ```bash
 sudo cmake --install build
 ```
+##### Build con log deprecated - UBUNTU
+cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/opt/Qt/Qt5.15.12/5.15.2/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
+
+- Log completo 
+cmake --build build-qt5.15.2 -j$(nproc) 2>&1 | tee deprecated_qt6.log
+
+- Log solo warning
+cmake --build build-qt5.15.2 -j"$(nproc)" 2>&1 | tee build-qt6/full_build.log | rg "deprecated|deprecated-declarations" > build-qt6/deprecated_qt5.15.2.log
+
+
+
 
 ---
 
