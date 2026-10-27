@@ -137,6 +137,7 @@ vcpkg install kf5syntaxhighlighting --triplet x64-windows
 vcpkg install qt5-serialport --triplet x64-windows
 ```
 
+#### build
 Pass the vcpkg toolchain file to CMake:
 
 ```bat
@@ -169,19 +170,4 @@ git clone https://github.com/thestk/rtmidi third_party\rtmidi
 cmake -S C:\third_party\rtmidi -B C:\third_party\build-rtmidi -DCMAKE_INSTALL_PREFIX=C:\third_party\install
 cmake --build C:\third_party\build-rtmidi --config Release
 cmake --install C:\third_party\build-rtmidi --config Release
-```
-
-
-### BUILD
-
-
-#### Build qt5.15.2 - WIN
-```bat
-::Compilazione MinGW
-cmake -B build-qt5.15.2 -S . -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\mingw810_64"
-
-::Compilazione MSVC
-cmake -B build-qt5.5.2 -S . "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\msvc2019_64"
-
-cmake --build build -j$env:NUMBER_OF_PROCESSORS
 ```
