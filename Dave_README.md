@@ -122,6 +122,7 @@ vcpkg install kf5syntaxhighlighting --triplet x64-windows
 vcpkg install qt5-serialport --triplet x64-windows
 ```
 
+#### build
 Pass the vcpkg toolchain file to CMake:
 
 ```bat
@@ -155,29 +156,3 @@ cmake -S C:\third_party\rtmidi -B C:\third_party\build-rtmidi -DCMAKE_INSTALL_PR
 cmake --build C:\third_party\build-rtmidi --config Release
 cmake --install C:\third_party\build-rtmidi --config Release
 ```
-
-
-### BUILD
-#### Build qt5.15.2 - UBUNTU
-cmake -B build-qt5.15.2 -S . -DQT_VERSION=5 -DCMAKE_PREFIX_PATH=/home/dave/Qt/5.15.2/gcc_64
-cmake --build build-qt5.15.2 -j$(nproc)
-
-#### Build qt5.15.2 - WIN
-```bat
-::Compilazione MinGW
-cmake -B build-qt5.15.2 -S . -G "MinGW Makefiles" "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\mingw810_64"
-
-::Compilazione MSVC
-cmake -B build-qt5.5.2 -S . "-DCMAKE_PREFIX_PATH=C:\Qt\Qt 5.15.2\Tools\msvc2019_64"
-
-cmake --build build -j$env:NUMBER_OF_PROCESSORS
-```
-
-##### Build con log deprecated - UBUNTU
-cmake -B build-qt6 -S . -DQT_VERSION=6 -DCMAKE_PREFIX_PATH=/opt/Qt/6.11.0/gcc_64 -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations" -DCMAKE_CXX_FLAGS="-Wdeprecated-declarations -Wno-error=deprecated-declarations"
-
-- Log completo 
-cmake --build build-qt6 -j$(nproc) 2>&1 | tee deprecated_qt6.log
-
-- Log solo warning
-cmake --build build-qt6 -j"$(nproc)" 2>&1 | tee build-qt6/full_build.log | rg "deprecated|deprecated-declarations" > build-qt6/deprecated_qt6.log
