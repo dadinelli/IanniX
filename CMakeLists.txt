@@ -601,3 +601,8 @@ message(STATUS "  FFmpeg     : ${USE_FFMPEG}")
 message(STATUS "  Kinect     : ${USE_KINECT}")
 message(STATUS "  Wacom      : ${USE_WACOM}")
 message(STATUS "-----------------------------------------------")
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+enable_testing()
+add_subdirectory(tests)

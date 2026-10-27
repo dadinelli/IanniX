@@ -76,7 +76,14 @@ cmake -B build -S . -DCMAKE_CXX_FLAGS="-I/usr/include/KF5/KSyntaxHighlighting"
 ::Nel caso ci fossero i warning di includePath
 cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
+::Original
+cmake --build build
+
+::Consigliato
 cmake --build build -j$(nproc)
+
+::Per i test
+ctest --test-dir build --output-on-failure
 ```
 
 The binary is written to `build/iannix`.
